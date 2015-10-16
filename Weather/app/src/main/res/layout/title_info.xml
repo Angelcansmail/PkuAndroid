@@ -10,12 +10,15 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/title_city"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
             android:layout_alignParentLeft="true"/>
         <ImageView
             android:id="@+id/city_seperator"
             android:layout_width="1dp"
             android:layout_height="40dp"
             android:layout_margin="2dp"
+            android:scaleType="fitCenter"
             android:layout_toRightOf="@id/title_cicy_page"
             android:background="#A71717"/>
         <TextView
@@ -28,22 +31,28 @@
             android:textColor="#000000"
             android:textSize="22sp"/>
         <ImageView
-            android:id="@+id/title_update_manager"
+            android:id="@+id/title_update_btn"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/title_update"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
             android:layout_alignParentRight="true"/>
         <ImageView
-            android:id="@+id/title_share_manager"
+            android:id="@+id/title_share_btn"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/title_share"
-            android:layout_toLeftOf="@id/title_update_manager"/>
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:layout_toLeftOf="@id/title_update_btn"/>
         <ImageView
-            android:id="@+id/title_locate_manager"
+            android:id="@+id/title_locate_btn"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/base_action_bar_action_city"
-            android:layout_toLeftOf="@+id/title_share_manager"/>
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:layout_toLeftOf="@+id/title_share_btn"/>
     </RelativeLayout>
 

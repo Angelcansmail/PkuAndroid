@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:context=".MainActivity">
     <include
-        android:id="@id/title"
+        android:id="@+id/title"
         layout="@layout/title_info"/>
-    <!--<LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/title"
-        android:background="@drawable/biz_plugin_weather_shenzhen_bg"
-        android:orientation="vertical">
-        &lt;!&ndash;界面主体部分&ndash;&gt;
-        <RelativeLayout
-            android:id="@+id/weather_today"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            &lt;!&ndash;实时天气信息&ndash;&gt;
-            <include android:id="@+id/cur_weather"
-                 layout="@layout/weather_info"/>
-            &lt;!&ndash;PM&ndash;&gt;
-            <include android:id="@+id/cur_pm"
-                     layout="@layout/pm_info"/>
-            &lt;!&ndash;今日天气信息&ndash;&gt;
-        </RelativeLayout>
-        &lt;!&ndash;未来七天信息&ndash;&gt;
-        &lt;!&ndash;广告&ndash;&gt;
-
-    </LinearLayout>-->
+    <include android:id="@+id/table"
+         layout="@layout/table_layout"/>
 </RelativeLayout>

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name" translatable="false">天气预报</string>
+    <string name="city">北京</string>
+    <string name="publish_time">今日15:47发布</string>
+    <string name="humidy_val">湿度:57%</string>
+    <string name="pm_num">PM2.5</string>
+    <string name="pm_value">100</string>
+    <string name="pollute_type">重度污染</string>
+    <string name="weather_pic">drawable/biz_plugin_weather_qing.png</string>
+    <string name="today_date">今日星期三</string>
+    <string name="weather_temperature">5~-5℃</string>
+    <string name="weather_type">晴转多云</string>
+    <string name="wind_type">微风</string>
 </resources>

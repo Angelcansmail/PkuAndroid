@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Menu</string>
+
+    <string name="summary">
+        Activity的生命周期，启动该模拟器后自动加载onCreat()、onStart()、onResume()
+        点击按钮退出该Activity，依次调用onPause()、onStop()
+        重新启动该Acitvity，将调用onRestart()、onStart()、onResume()事件
+        关闭程序，Activity自动销毁onStop()、onDestory()
+    </string>
+    <string name="action_settings">Settings</string>
+</resources>
