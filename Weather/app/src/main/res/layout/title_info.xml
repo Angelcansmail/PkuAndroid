@@ -54,5 +54,10 @@
             android:layout_gravity="center"
             android:scaleType="fitCenter"
             android:layout_toLeftOf="@+id/title_share_btn"/>
-    </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/title_update_progress"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            style="@style/title_update_progressbar_style"/>
+</RelativeLayout>
 
