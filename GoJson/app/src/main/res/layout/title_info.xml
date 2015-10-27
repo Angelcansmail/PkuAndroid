@@ -22,13 +22,13 @@
             android:layout_toRightOf="@id/title_cicy_page"
             android:background="#A71717"/>
         <TextView
-            android:id="@+id/current_city"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_toRightOf="@id/city_seperator"
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
-            android:textColor="#ffffff"
+            android:text="北京天气"
+            android:textColor="#000000"
             android:textSize="22sp"/>
         <ImageView
             android:id="@+id/title_update_btn"
@@ -58,9 +58,6 @@
             android:id="@+id/title_update_progress"
             android:layout_width="45dip"
             android:layout_height="45dip"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:layout_alignParentRight="true"
             style="@style/title_update_progressbar_style"/>
-</RelativeLayout>
+    </RelativeLayout>
 

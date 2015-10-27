@@ -1,31 +1,25 @@
 package cn.edu.pku.ss.gzh.gojson;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.os.Handler;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.webkit.WebView;
-import android.widget.EditText;
-import android.widget.ImageView;
-
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
+    //2 webview
+    /*EditText url;
+    WebView showURL;*/
+
+    //3、网络获取图片
+   /* ImageView imgview;
+    Bitmap bitmap;*/
+
+    //4、SAX解析XML
+    //Button button;
 
     //2 webview
-    EditText url;
-    WebView showURL;
-    ImageView imgview;
-    Bitmap bitmap;
-
-    @Override
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_SEARCH){
             String urlStr = url.getText().toString();
@@ -34,13 +28,13 @@ public class MainActivity extends Activity {
             return true;
         }
         return false;
-    }
+    }*/
 
-    int[] imagesId = new int[]{
+/*    int[] imagesId = new int[]{
                 R.drawable.biz_plugin_weather_0_50, R.drawable.biz_plugin_weather_101_150, R.drawable.biz_plugin_weather_151_200,
                 R.drawable.biz_plugin_weather_201_300, R.drawable.biz_plugin_weather_51_100, R.drawable.biz_plugin_weather_baoxue
-        };
-        int currentImgId = 0;
+        };*/
+       /* int currentImgId = 0;
 
         Handler handler = new Handler(){
             public void handleMessage(Message msg){
@@ -48,31 +42,94 @@ public class MainActivity extends Activity {
                     //显示从网上下载的图片
                     imgview.setImageBitmap(bitmap);
             }
-        };
-    //String url = "http://mobile100.sinaapp.com";
+        };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("get", "getData()");
-        //getData();
+        //setContentView(R.layout.xml_json_layout);
+z
+        //Intent实例
+        Button btn = (Button)findViewById(R.id.call);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //拨打电话
+               /*Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel://10086"));
+                startActivity(i);
+                //访问通讯录
+                Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/1"));
+                startActivity(i2);
+                //访问网站
+                Intent i3=new Intent(android.content.Intent.ACTION_VIEW,Uri.parse("http://www.ss.pku.edu.cn"));
+                startActivity(i3);
+                //调用新Activity
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                startActivity(intent);*/
+                //Intent传递用户信息
+                Intent intent1 = new Intent(MainActivity.this,ResultActivity.class);
+                intent1.putExtra("name","张");
+                intent1.putExtra("age",22);
+                //startActivityForResult(intent1,1);
 
-        imgview = (ImageView) findViewById(R.id.imgview);
-        url = (EditText) findViewById(R.id.url);
-        showURL = (WebView) findViewById(R.id.showURL);
-        showURL.getSettings().setJavaScriptEnabled(true);//支持javascript对象
+                startActivity(intent1);
+            }
+        });
+       /* protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+            if (requestCode == 1 && resultCode == RESULT_OK) {
+                String str= intent.getStringExtra("name");
+            }
+        }*/
+        //Goson获取图书json数据
+        /*Intent intent = new Intent(MainActivity.this,JsonActivity.class);
+        startActivity(intent);*/
+
+        //4 SAX解析xml的控制事件
+        /*button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String path = "http://wthrcdn.etouch.cn/WeatherApi?citykey=101010100";
+                        InputStream inputStream = HttpUtils.getXML(path);
+                        try{
+                            List<HashMap<String,String>> list = SaxService.readXML(inputStream,"weather");
+                            for (HashMap<String,String> map:list){
+                                Log.d("weather:",map.toString());
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+            }
+        });*/
+        //2 webview
+       /* url = (EditText) findViewById(R.id.url);
+        showURL = (WebView) findViewById(R.id.showURL);*/
+
+        //老师
+        /*showURL.getSettings().setJavaScriptEnabled(true);//支持javascript对象
         //页面直接加载url
-        /*showURL.setWebViewClient(new WebViewClient() {
+        showURL.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view) {
                 view.loadUrl(url);  //目标仍在本页面显示
                 return true;
             }
-        });
-        showURL.loadUrl(url);*/
+        });*/
+        //老师
+        //String url = "http://mobile100.sinaapp.com";
+        //showURL.loadUrl(url);
+
+        //3、网络获取图片
+        //imgview = (ImageView) findViewById(R.id.imgview);
 
         //URL、URLCONNECTION获取网络数据测试
-        new Thread(){
+        /*new Thread(){
             public void run(){
                 try{
                     URL url = new URL("http://www.baidu.com/img/bdlogo.png");
@@ -109,9 +166,9 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
             }
-        }.start();
+        }.start();*/
 
-        //final ImageView show = (ImageView) findViewById(R.id.show);
+        //show = (ImageView) findViewById(R.id.show);
         /*final Handler mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {

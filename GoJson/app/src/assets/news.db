@@ -1,0 +1,29 @@
+/*
+Navicat SQLite Data Transfer
+
+Source Server         : dbms
+Source Server Version : 30706
+Source Host           : :0
+
+Target Server Type    : SQLite
+Target Server Version : 30706
+File Encoding         : 65001
+
+Date: 2015-10-18 13:39:01
+*/
+
+PRAGMA foreign_keys = OFF;
+
+-- ----------------------------
+-- Table structure for "main"."news"
+-- ----------------------------
+DROP TABLE "main"."news";
+CREATE TABLE "news" (
+"_id"  INTEGER PRIMARY KEY AUTOINCREMENT,
+"news_title"  varchar(50),
+"news_content"  varchar(255)
+);
+
+-- ----------------------------
+-- Records of news
+-- ----------------------------

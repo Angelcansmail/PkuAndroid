@@ -2,16 +2,16 @@ package cn.edu.pku.ss.gzh.gojson.entity;
 
 public class Tag {
 
-	private String count;
-	private String name;
 	private String title;
+	private String name;
+	private String count;
 
-	public String getCount() {
-		return count;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setCount(String count) {
-		this.count = count;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getName() {
@@ -22,12 +22,12 @@ public class Tag {
 		this.name = name;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getCount() {
+		return count;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setCount(String count) {
+		this.count = count;
 	}
 
 }

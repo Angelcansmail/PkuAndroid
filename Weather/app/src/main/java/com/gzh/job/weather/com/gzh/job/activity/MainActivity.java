@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gzh.job.weather.R;
+import com.gzh.job.weather.com.gzh.job.entity.City;
 import com.gzh.job.weather.com.gzh.job.entity.FutureWeather;
 import com.gzh.job.weather.com.gzh.job.entity.TodayWeather;
 import com.gzh.job.weather.com.gzh.job.util.NetUtil;
@@ -36,9 +38,15 @@ import java.util.zip.GZIPInputStream;
  * Created by Angel on 2015/9/26.
  */
 public class MainActivity extends Activity implements OnClickListener{
+    private String cityCode = "101010100";  //默认为北京
     private final static String TAG="MainActivity";
+    private City city;
+    private TextView mCurrentCity;
     private ImageView mUpdateBtn;
     private ImageView mCitySelect;
+    //更新
+    private ProgressBar mProgress;
+    private int mProgressStatus = 0;
 
     /*private int[] imgId = new int[]{
             R.drawable.biz_plugin_weather_0_50,R.drawable.biz_plugin_weather_51_100,R.drawable.biz_plugin_weather_101_150,R.drawable.biz_plugin_weather_151_200,R.drawable.biz_plugin_weather_201_300,
@@ -69,13 +77,15 @@ public class MainActivity extends Activity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather_layout);
+
         /*setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);*///设置屏幕横向
         Log.i(TAG, "mainActivity->OnCreate");
         //更新天气信息
+        mCurrentCity = (TextView)findViewById(R.id.current_city);
         mUpdateBtn = (ImageView) findViewById(R.id.title_update_btn);
+        mProgress = (ProgressBar)findViewById(R.id.title_update_progress);
+        mProgress.setVisibility(View.INVISIBLE);
         mUpdateBtn.setOnClickListener(this);
-        /*requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setProgressBarIndeterminateVisibility(true);*/
         initView();
 
         //选择城市列表
@@ -87,9 +97,11 @@ public class MainActivity extends Activity implements OnClickListener{
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.title_update_btn:
+                mUpdateBtn.setVisibility(View.INVISIBLE);
+                mProgress.setVisibility(View.VISIBLE);
                 //MODE_PRIVATE 只能被本应用程序访问，MODE_WORLD_READABLE可被其他应用程序读，但不可写，MODE_WORLD_WRITEABLE可被其他应用程度读写
                 preferences = getSharedPreferences("config", MODE_PRIVATE);
-                String cityCode = preferences.getString("main_city_code","101010100");
+                //String cityCode = preferences.getString("main_city_code","101010100");
                 Log.d("Weather", cityCode);
                 if (NetUtil.getNetworkState(this) != NetUtil.NETWORN_NONE){
                     Log.d("Weather","网络通畅");
@@ -100,8 +112,11 @@ public class MainActivity extends Activity implements OnClickListener{
                 }
                 break;
            case R.id.title_cicy_page:
-                Intent i = new Intent(this, SelectCity.class);
-                startActivity(i);
+                //Intent i = new Intent(this, SelectCity.class);
+                //startActivity(i);
+                //得到新打开Activity关闭后返回的数据
+                //第二个参数为请求码，可以根据业务需求自己编号
+                startActivityForResult(new Intent(MainActivity.this, SelectCity.class), 1);
                 break;
             default:
                 break;
@@ -112,6 +127,16 @@ public class MainActivity extends Activity implements OnClickListener{
         }else{
             updateTodayWeather((TodayWeather)msg.obj);
         }*/
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            cityCode= data.getStringExtra("cityCode");
+            String cityString = data.getStringExtra("city");
+            mCurrentCity.setText(cityString + "天气预报");
+            Log.d("city", cityString);
+        }//得到新Activity 关闭后返回的数据
     }
     private void queryWeatherCode(String cityCode){
         final String address = "http://wthrcdn.etouch.cn/WeatherApi?citykey=" + cityCode;
@@ -274,6 +299,7 @@ public class MainActivity extends Activity implements OnClickListener{
     public ImageView weatherImg,pmImg,weatherImg1;
     //更新数据
     private void initView(){
+        mCurrentCity = (TextView)findViewById(R.id.current_city);
         cityTv = (TextView) findViewById(R.id.city);
         timeTv = (TextView) findViewById(R.id.publish_time);
         humidyTv = (TextView) findViewById(R.id.weather_humid);
@@ -294,6 +320,7 @@ public class MainActivity extends Activity implements OnClickListener{
         weatherImg1 = (ImageView) findViewById(R.id.weather1_pic);
 
         //未加载初始化
+        mCurrentCity.setText("北京天气");
         cityTv.setText("N/A");
         timeTv.setText("N/A");
         humidyTv.setText("N/A");
@@ -337,6 +364,8 @@ public class MainActivity extends Activity implements OnClickListener{
         icon2 = parseIcon(todayWeather.getType());
         weatherImg1.setImageResource(icon2);
 
+        mUpdateBtn.setVisibility(View.VISIBLE);
+        mProgress.setVisibility(View.INVISIBLE);
         Toast.makeText(MainActivity.this,"更新成功!",Toast.LENGTH_SHORT).show();
     }
     private int parseIcon(String strIcon){

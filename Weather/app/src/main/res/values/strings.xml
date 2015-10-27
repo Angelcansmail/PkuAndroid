@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">天气预报</string>
+    <string name="current_location">北京天气</string>
     <string name="city">北京</string>
     <string name="publish_time">今日15:47发布</string>
     <string name="humidy_val">湿度:57%</string>

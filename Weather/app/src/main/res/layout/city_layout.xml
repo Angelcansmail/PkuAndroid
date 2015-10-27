@@ -23,13 +23,13 @@
             android:layout_toRightOf="@id/title_back"
             android:background="#A71717"/>
         <TextView
+            android:id="@+id/title_current_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/city_seperator"
             android:gravity="center_vertical"
             android:paddingTop="10dp"
             android:paddingLeft="5dp"
-            android:text="当前城市：北京"
             android:textColor="#ffffff"
             android:textSize="22sp"/>
     </LinearLayout>

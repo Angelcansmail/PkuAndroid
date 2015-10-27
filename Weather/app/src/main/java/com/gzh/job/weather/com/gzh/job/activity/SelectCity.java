@@ -1,6 +1,7 @@
 package com.gzh.job.weather.com.gzh.job.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.gzh.job.weather.R;
 import com.gzh.job.weather.com.gzh.job.MyApplication;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class SelectCity extends Activity implements View.OnClickListener {
     SQLiteDatabase db;
     private ImageView mBackBtn;
+    private TextView mTitle_city;
     List<City> list = new ArrayList<City>();
     List<Map<String,String>> listItems = new ArrayList<Map<String,String>>();
     MyApplication application;
@@ -54,11 +56,19 @@ public class SelectCity extends Activity implements View.OnClickListener {
         ListView mlistView = (ListView)findViewById(R.id.city_list);
         mlistView.setAdapter(adapter);
 
+        mTitle_city = (TextView)findViewById(R.id.title_current_city);
+        mTitle_city.setText("当前城市：北京");
         mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(SelectCity.this, "你单击了:" + i,
-                        Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(SelectCity.this, "你单击了:" + listItems.get(i).get("city"),
+                        Toast.LENGTH_SHORT).show();*/
+                Intent intent = new Intent();
+                intent.putExtra("cityCode", listItems.get(i).get("number"));
+                intent.putExtra("city", listItems.get(i).get("city"));
+                mTitle_city.setText("当前城市：" + listItems.get(i).get("city"));
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
         //选择城市
@@ -71,7 +81,8 @@ public class SelectCity extends Activity implements View.OnClickListener {
     public void onClick(View v){
         switch (v.getId()){
            case R.id.title_back:
-                finish();
+                //关闭Activity
+                SelectCity.this.finish();
                 break;
            case R.id.search_city:
                cityDB = application.openCityDB();
@@ -81,7 +92,6 @@ public class SelectCity extends Activity implements View.OnClickListener {
                listItems = cityDB.getCity(citynameEditText.getText().toString());
                SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.city_items,new String[] {"number","province","city"},new int[]{R.id.list_number,R.id.list_province,R.id.list_city});
                ListView mlistView = (ListView)findViewById(R.id.city_list);
-
                mlistView.setAdapter(adapter);
                break;
            default:
