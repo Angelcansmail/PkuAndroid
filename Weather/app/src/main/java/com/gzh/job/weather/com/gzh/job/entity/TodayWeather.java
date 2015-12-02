@@ -1,9 +1,11 @@
 package com.gzh.job.weather.com.gzh.job.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Angel on 2015/10/7.
  */
-public class TodayWeather {
+public class TodayWeather implements Serializable{
     private String city;
     private String updatetime;
     private String shidu;

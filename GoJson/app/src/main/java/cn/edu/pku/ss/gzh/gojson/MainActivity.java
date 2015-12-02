@@ -2,11 +2,13 @@ package cn.edu.pku.ss.gzh.gojson;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
+    int request_Code = 1;
     //2 webview
     /*EditText url;
     WebView showURL;*/
@@ -47,16 +49,21 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.filter);
+        Button webBrowserbtn = (Button) findViewById(R.id.btn_webbrowser);
+        Button makecallbtn = (Button) findViewById(R.id.btn_makecalls);
+        Button showmapbtn = (Button) findViewById(R.id.btn_showMap);
+        Button launchMybrowserrbtn = (Button) findViewById(R.id.btn_launchMyBrowser);
+        //setContentView(R.layout.fragment);
+        //setContentView(R.layout.activity_main);
         //setContentView(R.layout.xml_json_layout);
-z
         //Intent实例
-        Button btn = (Button)findViewById(R.id.call);
+        /*Button btn = (Button)findViewById(R.id.call);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //拨打电话
-               /*Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel://10086"));
+               *//*Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel://10086"));
                 startActivity(i);
                 //访问通讯录
                 Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/1"));
@@ -66,7 +73,7 @@ z
                 startActivity(i3);
                 //调用新Activity
                 Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                startActivity(intent);*/
+                startActivity(intent);*//*
                 //Intent传递用户信息
                 Intent intent1 = new Intent(MainActivity.this,ResultActivity.class);
                 intent1.putExtra("name","张");
@@ -75,7 +82,7 @@ z
 
                 startActivity(intent1);
             }
-        });
+        });*/
        /* protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
             if (requestCode == 1 && resultCode == RESULT_OK) {
                 String str= intent.getStringExtra("name");
@@ -187,5 +194,44 @@ z
                 mHandler.sendMessage(msg);
             }
         }, 0, 800);*/
+        //fragment
+        /*FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        //---get the current display info---
+        WindowManager wm = getWindowManager();
+        Display d = wm.getDefaultDisplay();
+        if (d.getWidth() > d.getHeight()){
+            //---landscape mode--- 竖屏显示第一个
+            FirstFragment fragment1 = new FirstFragment();
+            // android.R.id.content refers to the content
+            // view of the activity
+            fragmentTransaction.replace(
+                    android.R.id.content, fragment1);
+        }
+        else
+        {
+            //---portrait mode---竖屏显示第二个
+            SecondFragment fragment2 = new SecondFragment();
+            fragmentTransaction.replace(
+                    android.R.id.content, fragment2);
+        }
+        fragmentTransaction.commit();*/
     }
+
+        //InternFilter
+        public void onClickWebBrowser(View view){
+
+        }
+        public void onClickMakeCalls(View view){
+
+        }
+        public void onClickShowMap(View view){
+
+        }
+        public void onClickLaunchMyBrowser(View view){
+            Intent i = new Intent("cn.edu.pku.ss.gzh.gojson.MyBrowserActivity");
+            i.setData(Uri.parse("http://www.amazon.com"));
+            startActivity(i);
+        }
 }

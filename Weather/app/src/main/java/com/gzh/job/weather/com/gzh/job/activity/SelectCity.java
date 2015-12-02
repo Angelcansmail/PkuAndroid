@@ -2,8 +2,10 @@ package com.gzh.job.weather.com.gzh.job.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,6 +35,7 @@ public class SelectCity extends Activity implements View.OnClickListener {
     List<Map<String,String>> listItems = new ArrayList<Map<String,String>>();
     MyApplication application;
     CityDB cityDB;
+    City city;
     public void onCreate(Bundle savedInstanceStatus){
         super.onCreate(savedInstanceStatus);
         setContentView(R.layout.city_layout);
@@ -52,21 +55,28 @@ public class SelectCity extends Activity implements View.OnClickListener {
             listItems.add(listem);
         }*/
         listItems = application.getCityItemsList();
-        SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.city_items,new String[] {"number","province","city"},new int[]{R.id.list_number,R.id.list_province,R.id.list_city});
+        //SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.city_items,new String[] {"number","province","city"},new int[]{R.id.list_number,R.id.list_province,R.id.list_city});
+        SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.city_items,new String[] {"province","city"},new int[]{R.id.list_province,R.id.list_city});
         ListView mlistView = (ListView)findViewById(R.id.city_list);
         mlistView.setAdapter(adapter);
 
+        Intent intent = SelectCity.this.getIntent();
         mTitle_city = (TextView)findViewById(R.id.title_current_city);
-        mTitle_city.setText("当前城市：北京");
+
+        SharedPreferences sharedPreferences = getSharedPreferences("cityCode", MODE_PRIVATE);
+        mTitle_city.setText("当前城市：" + sharedPreferences.getString("cityName", "北京"));
         mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 /*Toast.makeText(SelectCity.this, "你单击了:" + listItems.get(i).get("city"),
                         Toast.LENGTH_SHORT).show();*/
                 Intent intent = new Intent();
+                SharedPreferences sharedPreferences = getSharedPreferences("cityCode", MODE_PRIVATE);
+                Log.d("cityName:", sharedPreferences.getString("cityName", "北京"));
+                if(!listItems.get(i).get("city").equals(""))
+                    mTitle_city.setText("当前城市：" + listItems.get(i).get("city"));
                 intent.putExtra("cityCode", listItems.get(i).get("number"));
                 intent.putExtra("city", listItems.get(i).get("city"));
-                mTitle_city.setText("当前城市：" + listItems.get(i).get("city"));
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -90,7 +100,7 @@ public class SelectCity extends Activity implements View.OnClickListener {
                EditText citynameEditText = (EditText) findViewById(R.id.myedit);
                application.getCityItemsList();
                listItems = cityDB.getCity(citynameEditText.getText().toString());
-               SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.city_items,new String[] {"number","province","city"},new int[]{R.id.list_number,R.id.list_province,R.id.list_city});
+               SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.city_items,new String[] {"province","city"},new int[]{R.id.list_province,R.id.list_city});
                ListView mlistView = (ListView)findViewById(R.id.city_list);
                mlistView.setAdapter(adapter);
                break;

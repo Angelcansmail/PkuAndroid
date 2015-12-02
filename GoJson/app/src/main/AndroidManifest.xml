@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.edu.pku.ss.gzh.gojson" >
+    package="cn.edu.pku.ss.gzh.gojson">
+    <uses-permission android:name="android.permission.CALL_PHONE"/><!--INTENTfilter-->
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".db.MyApplication"
@@ -11,11 +12,9 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
+
         <activity android:name=".seletcCityActivity">
         </activity>
         <activity android:name=".ResultActivity">
@@ -29,6 +28,37 @@
 
         </activity>
         <activity android:name=".weather.Main">
+
+        </activity>
+        <activity android:name=".service.ServiceActivity">
+
+        </activity>
+        <service android:name=".service.MyService">
+            <intent-filter>
+                <action android:name="net.learn2develop.MyService"/>
+            </intent-filter>
+        </service>
+        <activity android:name=".servicetest.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <service android:name=".servicetest.MyService"/>
+        <service android:name=".servicetest.MyIntentService"/>
+
+        <activity android:name=".intents.IntentsActivity">
+
+        </activity>
+        <activity android:name=".intents.MyBrowserActivity">
+            <intent-filter>
+                <action android:name="ANDROID.INTENT.ACTION.VIEW"/>
+                <action android:name="cn.edu.pku.ss.gzh.gojson.MyBrowser"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".networktest.MainActivity">
 
         </activity>
     </application>

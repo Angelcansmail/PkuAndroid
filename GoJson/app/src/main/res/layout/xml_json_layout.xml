@@ -125,7 +125,7 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <TextView
+<!--    <TextView
         android:id="@+id/tv"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
@@ -133,5 +133,5 @@
         android:id="@+id/lv"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-    </ListView>
+    </ListView>-->
 </LinearLayout>

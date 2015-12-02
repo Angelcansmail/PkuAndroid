@@ -12,18 +12,19 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".com.gzh.job.activity.MainActivity"
-            android:configChanges="orientation"><!--设置屏幕横向android:screenOrientation="landscape"--><!--设置屏幕竖屏android:screenOrientation="portrait"-->
+       <activity android:name=".com.gzh.job.activity.MainActivity">
+        </activity>
+        <activity android:name=".com.gzh.job.activity.SelectCity">
+
+        </activity>
+        <activity android:name=".com.gzh.job.activity.Guide">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name=".com.gzh.job.AutoUpdateService">
 
-        <activity android:name=".com.gzh.job.activity.SelectCity">
-
-        </activity>
+        </service>
     </application>
-
 </manifest>

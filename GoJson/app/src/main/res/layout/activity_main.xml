@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="启动"/>
-    获取输入的url显示
+    //获取输入的url显示
     <EditText
         android:id="@+id/url"
         android:layout_width="match_parent"
