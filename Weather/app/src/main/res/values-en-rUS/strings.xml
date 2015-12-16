@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currentCity">CurrentCity：</string>
+    <string name="city">BeiJing</string>
+    <string name="weather">Weather</string>
+    <string name="publish">Published in: </string>
+    <string name="wendu">Current Temperature: </string>
+    <string name="humidy">Humidy: </string>
+    <string name="searchBar">add and query city</string>
+    <string name="searchCity">query</string>
+    <string name="share">Share</string>
+    <string name="cancel">Cancel</string>
+</resources>

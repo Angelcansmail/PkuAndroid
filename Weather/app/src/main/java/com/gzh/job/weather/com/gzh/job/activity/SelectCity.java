@@ -64,7 +64,7 @@ public class SelectCity extends Activity implements View.OnClickListener {
         mTitle_city = (TextView)findViewById(R.id.title_current_city);
 
         SharedPreferences sharedPreferences = getSharedPreferences("cityCode", MODE_PRIVATE);
-        mTitle_city.setText("当前城市：" + sharedPreferences.getString("cityName", "北京"));
+        mTitle_city.setText(getString(R.string.currentCity) + sharedPreferences.getString("cityName", getString(R.string.city)));
         mlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -72,9 +72,9 @@ public class SelectCity extends Activity implements View.OnClickListener {
                         Toast.LENGTH_SHORT).show();*/
                 Intent intent = new Intent();
                 SharedPreferences sharedPreferences = getSharedPreferences("cityCode", MODE_PRIVATE);
-                Log.d("cityName:", sharedPreferences.getString("cityName", "北京"));
+                Log.d("cityName:", sharedPreferences.getString("cityName", getString(R.string.city)));
                 if(!listItems.get(i).get("city").equals(""))
-                    mTitle_city.setText("当前城市：" + listItems.get(i).get("city"));
+                    mTitle_city.setText(getString(R.string.currentCity) + listItems.get(i).get("city"));
                 intent.putExtra("cityCode", listItems.get(i).get("number"));
                 intent.putExtra("city", listItems.get(i).get("city"));
                 setResult(RESULT_OK, intent);

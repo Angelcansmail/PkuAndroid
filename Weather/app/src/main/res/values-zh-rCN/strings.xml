@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currentCity">当前城市：</string>
+    <string name="city">北京 </string>
+    <string name="weather">天气 </string>
+    <string name="publish">发布 </string>
+    <string name="wendu">当前温度 </string>
+    <string name="humidy">湿度 </string>
+    <string name="searchBar">搜索或添加城市</string>
+    <string name="searchCity">查询天气</string>
+    <string name="share">分享</string>
+    <string name="cancel">取消</string>
+</resources>

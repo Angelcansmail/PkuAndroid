@@ -61,15 +61,14 @@ public class ViewPagerAdapter extends PagerAdapter {
     //判断instantiateItem返回的对象是否与当前View代表的是同一个对象
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        Log.d("isViewFromObject","instantiateItem返回对象与当前View一致？");
+        Log.d("isViewFromObject","instantiateItem返回对象与当前View一致？" + (view == object));
         return (view == object);
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        Log.d("destoryItem","删除position位置的视图");
+        Log.d("destoryItem","删除" + position + "位置的视图");
         //删除position位置指定的视图
         container.removeView(views.get(position));
-        super.destroyItem(container, position, object);
     }
 }

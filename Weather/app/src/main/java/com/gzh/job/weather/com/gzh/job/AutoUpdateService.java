@@ -13,32 +13,14 @@ import android.widget.Toast;
 import com.gzh.job.weather.R;
 import com.gzh.job.weather.com.gzh.job.activity.MainActivity;
 import com.gzh.job.weather.com.gzh.job.dao.WeatherDao;
+import com.gzh.job.weather.com.gzh.job.entity.FutureWeather;
 import com.gzh.job.weather.com.gzh.job.entity.TodayWeather;
 import com.gzh.job.weather.com.gzh.job.util.NetUtil;
 
+import java.io.Serializable;
+import java.util.List;
+
 public class AutoUpdateService extends Service {
-
-    /*public DownloadBinder mBinder = new DownloadBinder();
-
-    public class DownloadBinder extends Binder {
-
-        public void startDownload() {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    // start downloading
-                }
-            }).start();
-            Log.d("MyService", "startDownload executed");
-        }
-
-        public int getProgress() {
-            Log.d("MyService", "getProgress executed");
-            return 0;
-        }
-
-    }*/
-
     @Override
     public IBinder onBind(Intent intent) {
         Log.d("MyService", "onBind executed");
@@ -74,7 +56,7 @@ public class AutoUpdateService extends Service {
 		SharedPreferences sharedPreferences = getSharedPreferences("cityCode",MODE_PRIVATE);
         if (NetUtil.getNetworkState(AutoUpdateService.this) != NetUtil.NETWORN_NONE) {
             Log.d("NETWORK", "网络通畅");
-            String cityCode = sharedPreferences.getString("cityCode","");
+            String cityCode = sharedPreferences.getString("cityCode","101010100");
 			updateTodayWeather(cityCode);
         } else {
             Log.d("NETWORK", "网络无响应");
@@ -102,10 +84,16 @@ public class AutoUpdateService extends Service {
                     Intent intent = new Intent();
                     intent.setAction("com.gzh.job.weather.com.gzh.job.activity.MainActivity");
                     TodayWeather todayWeather = new WeatherDao().queryWeatherCode(cityCode);
-                    Log.d("后台更新天气1：", todayWeather.toString());
-                    intent.setAction("com.gzh.job.weather.com.gzh.job.activity.MainActivity");
-                    intent.putExtra("todayweather", todayWeather);
-                    sendBroadcast(intent);
+                    List<FutureWeather> futureWeather = new WeatherDao().queryFutureWeatherCode(cityCode);
+                    futureWeather.remove(0);
+                    if(todayWeather != null && futureWeather != null) {
+                        Log.d("后台更新今日天气：", todayWeather.toString());
+                        intent.setAction("com.gzh.job.weather.com.gzh.job.activity.MainActivity");
+                        intent.putExtra("todayWeather", todayWeather);
+                        intent.putExtra("futureWeather",(Serializable)futureWeather);
+                        Log.d("后台更新未来天气：", futureWeather.toString());
+                        sendBroadcast(intent);
+                    }
                 } catch (Exception e) {
                     Log.d("updateTodayWeather", "更新天气失败！");
                 }

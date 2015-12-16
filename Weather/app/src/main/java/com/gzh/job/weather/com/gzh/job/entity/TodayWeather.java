@@ -24,6 +24,12 @@ public class TodayWeather implements Serializable{
     private String suggest;
     private String MajorPollutants;
 
+    private String fdate0;
+    private String fhigh0;
+    private String flow0;
+    private String ftype0;
+    private String ffengxiang0;
+
     @Override
     public String toString() {
         return "TodayWeather{" +
@@ -192,5 +198,53 @@ public class TodayWeather implements Serializable{
 
     public void setMajorPollutants(String majorPollutants) {
         MajorPollutants = majorPollutants;
+    }
+
+    public int getPm25Val() {
+        return pm25Val;
+    }
+
+    public void setPm25Val(int pm25Val) {
+        this.pm25Val = pm25Val;
+    }
+
+    public String getFdate0() {
+        return fdate0;
+    }
+
+    public void setFdate0(String fdate0) {
+        this.fdate0 = fdate0;
+    }
+
+    public String getFhigh0() {
+        return fhigh0;
+    }
+
+    public void setFhigh0(String fhigh0) {
+        this.fhigh0 = fhigh0;
+    }
+
+    public String getFlow0() {
+        return flow0;
+    }
+
+    public void setFlow0(String flow0) {
+        this.flow0 = flow0;
+    }
+
+    public String getFtype0() {
+        return ftype0;
+    }
+
+    public void setFtype0(String ftype0) {
+        this.ftype0 = ftype0;
+    }
+
+    public String getFfengxiang0() {
+        return ffengxiang0;
+    }
+
+    public void setFfengxiang0(String ffengxiang0) {
+        this.ffengxiang0 = ffengxiang0;
     }
 }

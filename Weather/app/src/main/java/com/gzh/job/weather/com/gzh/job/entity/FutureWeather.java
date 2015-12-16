@@ -1,9 +1,11 @@
 package com.gzh.job.weather.com.gzh.job.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Angel on 2015/10/13.
  */
-public class FutureWeather {
+public class FutureWeather implements Serializable{
     private String date;
     private String type;
     private String weather_pic;

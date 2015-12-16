@@ -25,7 +25,7 @@ public class Guide extends Activity implements ViewPager.OnPageChangeListener{
     private List<View> views;
     //页面监听事件，使得小圆点随着页面的变化而变化
     private ImageView[] dots;
-    private int[] ids = {R.id.iv1,R.id.iv2};
+    private int[] ids = {R.id.iv1,R.id.iv2,R.id.iv3};
     private Button btn;
 
     private int time = 0;
@@ -79,6 +79,7 @@ public class Guide extends Activity implements ViewPager.OnPageChangeListener{
         LayoutInflater inflater = LayoutInflater.from(this);
         views = new ArrayList<View>();
         views.add(inflater.inflate(R.layout.intro, null));
+        views.add(inflater.inflate(R.layout.intro2, null));
         views.add(inflater.inflate(R.layout.welcome, null));
         viewPagerAdapter = new ViewPagerAdapter(views,this);
         viewPager = (ViewPager)findViewById(R.id.viewpager);

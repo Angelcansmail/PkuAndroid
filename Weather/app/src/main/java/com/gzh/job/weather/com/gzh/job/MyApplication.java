@@ -29,7 +29,7 @@ public class MyApplication extends Application {
     public CityDB mCityDB,mdb;
     public static final String CITY_DB_NAME = "city.db";
 
-    List<City> list = new ArrayList<City>();
+    //List<City> mCityList = new ArrayList<City>();
     List<Map<String,String>> listItems = new ArrayList<Map<String,String>>();
 
     @Override
@@ -100,6 +100,9 @@ public class MyApplication extends Application {
     }
     public static MyApplication getInstance(){
         return mApplication;
+    }
+    public List<City> getCityList(){
+        return mCityList;
     }
 
 }
